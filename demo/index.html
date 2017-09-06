@@ -26,7 +26,8 @@
             <demo-snippet>
                 <template id="four" is="dom-bind">
                     <kwc-feature-list features="[[features]]"
-                                      title="[[title]]"></kwc-feature-list>
+                                      title="[[title]]">
+                                      </kwc-feature-list>
                 </template>
             </demo-snippet>
         </div>
@@ -35,7 +36,8 @@
             <demo-snippet>
                 <template id="three" is="dom-bind">
                     <kwc-feature-list features="[[features]]"
-                                      title="[[title]]"></kwc-feature-list>
+                                      title="[[title]]">
+                                      </kwc-feature-list>
                 </template>
             </demo-snippet>
         </div>
@@ -44,76 +46,48 @@
             <demo-snippet>
                 <template id="two" is="dom-bind">
                     <kwc-feature-list features="[[features]]"
-                                      title="[[title]]"></kwc-feature-list>
+                                      title="[[title]]">
+                                      </kwc-feature-list>
                 </template>
             </demo-snippet>
         </div>
         <div class="vertical-section-container">
-            <h3>Singl feature without a title</h3>
+            <h3>Single feature without a title</h3>
             <demo-snippet>
                 <template id="one" is="dom-bind">
                     <kwc-feature-list features="[[features]]"
-                                      title="[[title]]"></kwc-feature-list>
+                                      title="[[title]]">
+                                      </kwc-feature-list>
                 </template>
             </demo-snippet>
         </div>
         <script>
-            var fourFeatures = [{
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 1",
-                        body: "Body 1"
-                    }, {
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 2",
-                        body: "Body 2"
-                    }, {
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 3",
-                        body: "Body 3"
-                    }, {
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 4",
-                        body: "Body 4"
-                    }
-                ],
-                threeFeatures = [{
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 1",
-                        body: "Body 1"
-                    }, {
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 2",
-                        body: "Body 2"
-                    }, {
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 3",
-                        body: "Body 3"
-                    }
-                ],
-                twoFeatures = [{
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 1",
-                        body: "Body 1"
-                    }, {
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 2",
-                        body: "Body 2"
-                    }
-                ],
-                oneFeature = [{
-                        imgSrc: "https://placekitten.com/300/150",
-                        title: "Title 1",
-                        body: "Body 1"
-                    }
-                ];
+            var features = [{
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 1",
+                    body: "Body 1"
+                }, {
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 2",
+                    body: "Body 2"
+                }, {
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 3",
+                    body: "Body 3"
+                }, {
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 4",
+                    body: "Body 4"
+                }
+            ];
             document.addEventListener('WebComponentsReady', () => {
-                four.features = fourFeatures;
+                four.features = features;
                 four.title = 'Four features';
-                three.features = threeFeatures;
+                three.features = features.slice(0, 3);
                 three.title = 'Three features';
-                two.features = twoFeatures;
+                two.features = features.slice(0, 2);
                 two.title = 'Two features';
-                one.features = oneFeature;
+                one.features = features.slice(0, 1);
             });
         </script>
     </body>

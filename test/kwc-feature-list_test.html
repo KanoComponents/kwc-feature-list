@@ -30,59 +30,62 @@
                     assert.equal(element.is, 'kwc-feature-list');
                 });
 
-                test('the title is undefined by default', function() {
-                    assert.equal(element.title, undefined);
+                test('the title is null by default', function() {
+                    assert.equal(element.title, null);
                 });
 
                 test('the title can be set imperatively', function(done) {
-                    element.title = 'Features'
-                    assert.equal(element.title, 'Features');
+                    var titleText = 'Features';
+                    element.title = titleText;
+                    assert.equal(element.title, titleText);
                     flush(function() {
-                        var title =  Polymer.dom(element.root).querySelectorAll('h2')[0];
-                        assert.equal(title.textContent, 'Features');
+                        var title =  Polymer.dom(element.root).querySelector('h2');
+                        assert.equal(title.textContent, titleText);
                         done();
                     });
                 });
 
                 test('the features are an empty array by default', function() {
                     assert.isArray(element.features);
+                    assert.lengthOf(element.features, 0);
                 });
 
                 test('the features can be set imperatively', function(done) {
-                    var imageUrl = 'https://placekitten.com/300/150';
-                    element.features = [
-                        {
-                            imgSrc: imageUrl,
-                            title: "Title 1",
-                            body: "Body 1"
-                        }, {
-                            imgSrc: imageUrl,
-                            title: "Title 2",
-                            body: "Body 2"
-                        }, {
-                            imgSrc: imageUrl,
-                            title: "Title 3",
-                            body: "Body 3"
-                        }
-                    ];
-                    assert.lengthOf(element.features, 3);
+                    var imageUrl = 'https://placekitten.com/300/150',
+                        featureArray = [
+                            {
+                                imgSrc: imageUrl,
+                                title: "Title 1",
+                                body: "Body 1"
+                            }, {
+                                imgSrc: imageUrl,
+                                title: "Title 2",
+                                body: "Body 2"
+                            }, {
+                                imgSrc: imageUrl,
+                                title: "Title 3",
+                                body: "Body 3"
+                            }
+                        ];
+                    element.features = featureArray;
+                    assert.lengthOf(element.features, featureArray.length);
                     assert.isObject(element.features[0]);
                     assert.equal(element.features[0].imgSrc, imageUrl);
                     assert.equal(element.features[0].title, 'Title 1');
                     assert.equal(element.features[0].body, 'Body 1');
                     flush(function() {
-                        var features =  Polymer.dom(element.root).querySelectorAll('.features .feature'),
-                            image = features[0].querySelectorAll('img')
-                            title = features[0].querySelectorAll('h3'),
-                            body = features[0].querySelectorAll('p');
-                        assert.lengthOf(features, 3);
-                        assert.equal(image[0].src, imageUrl);
-                        assert.equal(title[0].textContent, 'Title 1');
-                        assert.equal(body[0].textContent, 'Body 1');
+                        var features =  Polymer.dom(element.root).querySelectorAll('.feature'),
+                            feature =  Polymer.dom(element.root).querySelector('.feature'),
+                            image = feature.querySelector('iron-image')
+                            title = feature.querySelector('h3'),
+                            body = feature.querySelector('p');
+                        assert.lengthOf(features, featureArray.length);
+                        assert.equal(image.src, imageUrl);
+                        assert.equal(title.textContent, 'Title 1');
+                        assert.equal(body.textContent, 'Body 1');
                         done();
                     });
                 });
-
             });
         </script>
     </body>
