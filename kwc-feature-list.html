@@ -1,0 +1,112 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../web-components/kano-style/kano-style.html">
+
+<!--
+`kwc-feature-list`
+A formatted, responsive list of features with images and descriptive text
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--kwc-feature-list-bg-color` | The background color of the component | `--color-porcelain`
+
+@demo demo/index.html
+-->
+
+<dom-module id="kwc-feature-list">
+    <template>
+        <style>
+            :host {
+                background-color: var(--kwc-feature-list-bg-color, --color-porcelain);
+                box-sizing: border-box;
+                display: block;
+                padding: 32px 24px 0 24px;
+                text-align: center;
+            }
+            :host .features {
+                @apply --layout-center-justified;
+                @apply --layout-horizontal;
+                @apply --layout-wrap;
+            }
+            :host .feature {
+                box-sizing: border-box;
+                padding-bottom: 24px;
+            }
+            :host h2,
+            :host h3 {
+                color: var(--color-black);
+                font-family: var(--font-heading);
+                font-weight: bold;
+            }
+            :host h2 {
+                font-size: 22px;
+                margin: 0 0 32px 0;
+            }
+            :host h3 {
+                font-size: 18px;
+                margin: 0 0 16px 0;
+            }
+            :host p {
+                color: var(--color-grey);
+                font-family: var(--font-body);
+                font-size: 16px;
+                font-weight: normal;
+                margin: 0;
+            }
+            :host img {
+                margin-bottom: 32px;
+                max-width: 100%;
+            }
+            @media all and (max-width: 580px) {
+                :host .feature {
+                    padding-bottom: 24px;
+                    width: 100%;
+                }
+            }
+            @media all and (min-width: 581px) {
+                :host .feature {
+                    width: 33%;
+                }
+                :host .feature {
+                    padding-left: 16px;
+                    padding-right: 16px;
+                }
+            }
+        </style>
+        <dom-if>
+            <template is="dom-if" if="[[!!title]]">
+                <h2>[[title]]</h2>
+            </template>
+        </dom-if>
+        <div class="features">
+            <dom-repeat>
+                <template is="dom-repeat" items="[[features]]">
+                    <div class="feature">
+                        <img alt$="[[item.title]]" src$="[[item.imgSrc]]" />
+                        <h3>[[item.title]]</h3>
+                        <p>[[item.body]]</p>
+                    </div>
+                </template>
+            </dom-repeat>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'kwc-feature-list',
+            properties: {
+                /** Defines the features to be displayed */
+                features: {
+                    type: Array,
+                    value: function () {
+                        return [];
+                    }
+                },
+                /** The block title */
+                title: {
+                    type: String
+                }
+            }
+        });
+    </script>
+</dom-module>
