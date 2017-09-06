@@ -71,8 +71,8 @@
                     assert.lengthOf(element.features, featureArray.length);
                     assert.isObject(element.features[0]);
                     assert.equal(element.features[0].imgSrc, imageUrl);
-                    assert.equal(element.features[0].title, 'Title 1');
-                    assert.equal(element.features[0].body, 'Body 1');
+                    assert.equal(element.features[0].title, featureArray[0].title);
+                    assert.equal(element.features[0].body, featureArray[0].body);
                     flush(function() {
                         var features =  Polymer.dom(element.root).querySelectorAll('.feature'),
                             feature =  Polymer.dom(element.root).querySelector('.feature'),
@@ -81,8 +81,8 @@
                             body = feature.querySelector('p');
                         assert.lengthOf(features, featureArray.length);
                         assert.equal(image.src, imageUrl);
-                        assert.equal(title.textContent, 'Title 1');
-                        assert.equal(body.textContent, 'Body 1');
+                        assert.equal(title.textContent, featureArray[0].title);
+                        assert.equal(body.textContent, featureArray[0].body);
                         done();
                     });
                 });
