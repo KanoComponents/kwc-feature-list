@@ -1,0 +1,11 @@
+# Mac specific
+DS_Store
+.DS_Store
+
+# Bower
+bower_components
+
+# Logs
+logs
+*.log
+npm-debug.log*
