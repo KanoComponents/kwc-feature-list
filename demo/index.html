@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>kwc-feature-list demo</title>
+
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+        <link rel="import" href="../kwc-feature-list.html">
+
+        <custom-style>
+            <style is="custom-style" include="demo-pages-shared-styles">
+                :root {
+                    --kwc-feature-list-bg-color: #e9ebec;
+                }
+            </style>
+        </custom-style>
+    </head>
+    <body>
+        <div class="vertical-section-container">
+            <h3>Four features with a title</h3>
+            <demo-snippet>
+                <template id="four" is="dom-bind">
+                    <kwc-feature-list features="[[features]]"
+                                      title="[[title]]">
+                                      </kwc-feature-list>
+                </template>
+            </demo-snippet>
+        </div>
+        <div class="vertical-section-container">
+            <h3>Three features with a title</h3>
+            <demo-snippet>
+                <template id="three" is="dom-bind">
+                    <kwc-feature-list features="[[features]]"
+                                      title="[[title]]">
+                                      </kwc-feature-list>
+                </template>
+            </demo-snippet>
+        </div>
+        <div class="vertical-section-container">
+            <h3>Two features with a title</h3>
+            <demo-snippet>
+                <template id="two" is="dom-bind">
+                    <kwc-feature-list features="[[features]]"
+                                      title="[[title]]">
+                                      </kwc-feature-list>
+                </template>
+            </demo-snippet>
+        </div>
+        <div class="vertical-section-container">
+            <h3>Single feature without a title</h3>
+            <demo-snippet>
+                <template id="one" is="dom-bind">
+                    <kwc-feature-list features="[[features]]"
+                                      title="[[title]]">
+                                      </kwc-feature-list>
+                </template>
+            </demo-snippet>
+        </div>
+        <script>
+            var features = [{
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 1",
+                    body: "Body 1"
+                }, {
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 2",
+                    body: "Body 2"
+                }, {
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 3",
+                    body: "Body 3"
+                }, {
+                    imgSrc: "http://via.placeholder.com/250x200",
+                    title: "Title 4",
+                    body: "Body 4"
+                }
+            ];
+            document.addEventListener('WebComponentsReady', () => {
+                four.features = features;
+                four.title = 'Four features';
+                three.features = features.slice(0, 3);
+                three.title = 'Three features';
+                two.features = features.slice(0, 2);
+                two.title = 'Two features';
+                one.features = features.slice(0, 1);
+            });
+        </script>
+    </body>
+</html>

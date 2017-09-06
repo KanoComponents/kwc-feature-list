@@ -5,7 +5,7 @@ A formatted, responsive list of features with images and descriptive text
  - What is it called?
      - kwc-feature-list
  - What is it made out of?
-     - Describe here the contents of this component
+     - `iron-image`
  - What variants are needed?
      - Title
      - Without title
@@ -21,6 +21,8 @@ A formatted, responsive list of features with images and descriptive text
         - `--font-body`
       - Exposes the following style variables:
         - `--kwc-feature-list-bg-color`
+        - `--kwc-feature-list-img-height`
+        - `--kwc-feature-list-img-width`
 
 
 ## To do

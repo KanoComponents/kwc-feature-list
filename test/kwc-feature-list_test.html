@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>kwc-feature-list test</title>
+
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="../../web-component-tester/browser.js"></script>
+
+        <link rel="import" href="../kwc-feature-list.html">
+    </head>
+    <body>
+        <test-fixture id="basic">
+            <template>
+                <kwc-feature-list></kwc-feature-list>
+            </template>
+        </test-fixture>
+
+        <script>
+            suite('kwc-feature-list', function() {
+                var element;
+
+                setup(function () {
+                    element = fixture('basic');
+                });
+
+                test('instantiating the element works', function() {
+                    assert.equal(element.is, 'kwc-feature-list');
+                });
+
+                test('the title is null by default', function() {
+                    assert.equal(element.title, null);
+                });
+
+                test('the title can be set imperatively', function(done) {
+                    var titleText = 'Features';
+                    element.title = titleText;
+                    assert.equal(element.title, titleText);
+                    flush(function() {
+                        var title =  Polymer.dom(element.root).querySelector('h2');
+                        assert.equal(title.textContent, titleText);
+                        done();
+                    });
+                });
+
+                test('the features are an empty array by default', function() {
+                    assert.isArray(element.features);
+                    assert.lengthOf(element.features, 0);
+                });
+
+                test('the features can be set imperatively', function(done) {
+                    var imageUrl = 'https://placekitten.com/300/150',
+                        featureArray = [
+                            {
+                                imgSrc: imageUrl,
+                                title: "Title 1",
+                                body: "Body 1"
+                            }, {
+                                imgSrc: imageUrl,
+                                title: "Title 2",
+                                body: "Body 2"
+                            }, {
+                                imgSrc: imageUrl,
+                                title: "Title 3",
+                                body: "Body 3"
+                            }
+                        ];
+                    element.features = featureArray;
+                    assert.lengthOf(element.features, featureArray.length);
+                    assert.isObject(element.features[0]);
+                    assert.equal(element.features[0].imgSrc, imageUrl);
+                    assert.equal(element.features[0].title, featureArray[0].title);
+                    assert.equal(element.features[0].body, featureArray[0].body);
+                    flush(function() {
+                        var features =  Polymer.dom(element.root).querySelectorAll('.feature'),
+                            feature =  Polymer.dom(element.root).querySelector('.feature'),
+                            image = feature.querySelector('iron-image')
+                            title = feature.querySelector('h3'),
+                            body = feature.querySelector('p');
+                        assert.lengthOf(features, featureArray.length);
+                        assert.equal(image.src, imageUrl);
+                        assert.equal(title.textContent, featureArray[0].title);
+                        assert.equal(body.textContent, featureArray[0].body);
+                        done();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
