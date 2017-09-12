@@ -32,6 +32,7 @@
 
                 test('the title is null by default', function() {
                     assert.equal(element.title, null);
+                    assert.equal(element._hasTitle, false);
                 });
 
                 test('the title can be set imperatively', function(done) {
