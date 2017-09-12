@@ -79,25 +79,21 @@ Custom property | Description | Default
                 }
             }
         </style>
-        <dom-if>
-            <template is="dom-if" if="[[title]]">
-                <h2>[[title]]</h2>
-            </template>
-        </dom-if>
+        <template is="dom-if" if="[[_hasTitle]]">
+            <h2>[[title]]</h2>
+        </template>
         <div class="features">
-            <dom-repeat>
-                <template is="dom-repeat" items="[[features]]">
-                    <div class="feature">
-                        <iron-image alt$="[[item.title]]"
-                                    preload
-                                    sizing="contain"
-                                    src$="[[item.imgSrc]]">
-                                    </iron-image>
-                        <h3>[[item.title]]</h3>
-                        <p>[[item.body]]</p>
-                    </div>
-                </template>
-            </dom-repeat>
+            <template is="dom-repeat" items="[[features]]">
+                <div class="feature">
+                    <iron-image alt$="[[item.title]]"
+                                preload
+                                sizing="contain"
+                                src$="[[item.imgSrc]]">
+                                </iron-image>
+                    <h3>[[item.title]]</h3>
+                    <p>[[item.body]]</p>
+                </div>
+            </template>
         </div>
     </template>
 
@@ -112,11 +108,24 @@ Custom property | Description | Default
                         return [];
                     }
                 },
+                /** Boolean representation of whether the card has a title */
+                _hasTitle: {
+                    type: Boolean,
+                    computed: '_computeHasTitle(title)'
+                },
                 /** The block title */
                 title: {
                     type: String,
                     value: null
                 }
+            },
+            /**
+             * Compute whether or not the element has a title.
+             * @param {String} title The title of the element (or `null`)
+             * @return {Boolean}
+             */
+            _computeHasTitle (title) {
+                return title ? true : false;
             }
         });
     </script>
