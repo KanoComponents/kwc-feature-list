@@ -10,8 +10,8 @@ A formatted, responsive list of features with images and descriptive text
 Custom property | Description | Default
 ----------------|-------------|----------
 `--kwc-feature-list-bg-color` | The background color of the component | `--color-porcelain`
-`--kwc-feature-list-img-height` | The height of the image | `200px`
-`--kwc-feature-list-img-width` | The width of the image | `200px`
+`--kwc-feature-list-img-height` | The height of the item images | `200px`
+`--kwc-feature-list-item-width` | The width of the feature item | `200px`
 
 @demo demo/index.html
 -->
@@ -35,6 +35,11 @@ Custom property | Description | Default
                 box-sizing: border-box;
                 padding-bottom: 24px;
             }
+            :host .content {
+                box-sizing: border-box;
+                margin: 0 auto;
+                max-width: var(--kwc-feature-list-item-width, 200px);
+            }
             :host h2,
             :host h3 {
                 color: var(--color-black);
@@ -47,6 +52,7 @@ Custom property | Description | Default
             }
             :host h3 {
                 font-size: 24px;
+                line-height: 24px;
                 margin: 8px 0 0 0;
             }
             :host p {
@@ -60,7 +66,7 @@ Custom property | Description | Default
                 background-color: var(--kwc-feature-list-bg-color, --color-porcelain);
                 height: var(--kwc-feature-list-img-height, 200px);
                 max-width: 100%;
-                width: var(--kwc-feature-list-img-width, 200px);
+                width: var(--kwc-feature-list-item-width, 200px);
             }
             @media all and (max-width: 580px) {
                 :host .feature {
@@ -89,8 +95,10 @@ Custom property | Description | Default
                                 sizing="contain"
                                 src$="[[item.imgSrc]]">
                                 </iron-image>
-                    <h3>[[item.title]]</h3>
-                    <p>[[item.body]]</p>
+                    <div class="content">
+                        <h3>[[item.title]]</h3>
+                        <p>[[item.body]]</p>
+                    </div>
                 </div>
             </template>
         </div>
